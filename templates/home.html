@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        background: rgba(13, 78, 62, 0.976);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        font-family: "Courier New", Courier, monospace;
+      }
+      button {
+        cursor: pointer;
+      }
+      .content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        background: rgba(9, 8, 8, 0.523);
+        width: 220px;
+        padding: 30px;
+        height: 830px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        color: rgb(193, 195, 195);
+      }
+      .logout {
+        margin-top: 200px;
+      }
+      .logout a {
+        color: white;
+      }
+      .content ul {
+        margin-top: 10px;
+        list-style: none;
+        margin-bottom: 30px;
+
+      }
+      .content ul li {
+        margin-bottom: 10px;
+      }
+      .content img {
+        margin-left: 30%;
+        width: 70px;
+        border-radius: 10px;
+      }
+      a {
+        text-decoration: none;
+        color: rgb(183, 188, 188);
+      }
+      a:hover {
+        color: whitesmoke;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="content">
+      {%load static%}
+      <img src="{%static '../static/logo-ju-small.png'%}" alt="" />
+      <h5>
+        <a href="/"> Jahangirnagar University </a>
+      </h5>
+      <ul>
+        <label for="">Personal</label>
+        <ul>
+          <a href="/dashboard">
+            <li>Dashboard</li>
+          </a>
+        </ul>
+        <label for="">Studies</label>
+        <ul>
+          <a href="/preclass">
+            <li>Semesters</li>
+          </a>
+        </ul>
+        <label for="">People</label>
+        <ul>
+          <a href="/search">
+            <li>Search</li>
+          </a>
+        </ul>
+        <label for="">Tools</label>
+        <ul>
+          <a href="">
+            <li>Help</li>
+          </a>
+          <a href="/catalog">
+            <li>Course Catalog</li>
+          </a>
+          <a href="/preat">
+            <li>Attendance</li>
+          </a>
+            <li><b>User : </b>{{user}}</li>
+          <li> <a href="/logout">Logout</a></li>
+        </ul>
+
+
+
+
+      </ul>
+    </div>
+    {%block body%}{%endblock body%}
+  </body>
+</html>

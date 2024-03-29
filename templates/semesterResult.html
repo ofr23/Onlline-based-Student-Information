@@ -1,0 +1,107 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 30px;
+        height: 100%;
+      }
+      .header {
+        border-bottom: 2px solid rgb(218, 216, 216);
+      }
+      .bu {
+        margin-top: -20px;
+        background: whitesmoke;
+        padding: 5px;
+        font-weight: 100;
+        font-size: 18px;
+      }
+      input {
+        border: none;
+        outline: none;
+      }
+      .bu a {
+        color: black;
+      }
+      table {
+        width: 100%;
+      }
+      .jj {
+        text-align: center;
+        border-bottom: 2px solid rgb(218, 216, 216);
+      }
+      tr {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        width: 100%;
+      }
+      thead th {
+        background: rgb(13, 78, 62);
+        font-weight: 600;
+        color: white;
+        font-size: 19px;
+      }
+      .back {
+        cursor: pointer;
+        background: black;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        margin-left: 40%;
+      }
+      th {
+        padding: 20px;
+        margin-bottom: 10px;
+        background: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        font-weight: 200;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="con">
+      <h3 class="header">Session: {{session}} - {{session|add:1}}</h3>
+      <h4 class="bu">{{semester}}</h4>
+      <h3 class="jj">Result</h3>
+      <form method="POST">
+        <table>
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <th>CGPA</th>
+            </tr>
+          </thead>
+          {%csrf_token%} {%for o in result%}
+          <tr>
+            <th>{{o.student.studentId}}</th>
+            <th>{{o.cgpa}}</th>
+          </tr>
+          {%endfor%}
+        </table>
+      </form>
+      <button class="back">
+        <a href="/class/{{session}}/semester/{{no}}">Back</a>
+      </button>
+    </div>
+  </body>
+</html>
+{%endblock body%}

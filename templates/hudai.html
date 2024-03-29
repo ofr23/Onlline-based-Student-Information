@@ -1,0 +1,117 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .con {
+        margin-left: 300px;
+        background: floralwhite;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 60px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .con > * {
+        margin-right: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .con > * > * {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: floralwhite;
+        border-radius: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+          rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      }
+      .row1 .ok1 {
+        border-left: 4px solid salmon;
+        border-right: 4px solid salmon;
+      }
+      .row1 .ok2 {
+        border-left: 4px solid seagreen;
+      }
+      .row1 .ok3 {
+        border-left: 4px solid steelblue;
+      }
+      .row2 .ok1 {
+        border-left: 4px solid darkmagenta;
+      }
+      .row2 .ok2 {
+        border-left: 4px solid crimson;
+      }
+      .row2 .ok3 {
+        border-left: 4px solid hotpink;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="con">
+      <div class="row1">
+        <div class="ok1">
+          <h1>A complete range of features</h1>
+        </div>
+        <div class="ok2">
+          <h3>Intuitive Dashboard</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            aut, soluta nulla qui modi nemo exercitationem ut in. Blanditiis
+            soluta eius omnis quam distinctio suscipit ex, atque quaerat tempora
+            nulla.
+          </p>
+        </div>
+        <div class="ok3">
+          <h3>Performance</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A,
+            consequuntur? Veritatis suscipit dolorum obcaecati reiciendis,
+            incidunt ratione laborum commodi repudiandae aspernatur. Culpa,
+            optio repellendus vitae voluptates error explicabo esse
+            voluptatibus?
+          </p>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="ok1">
+          <h3>Extreme Security</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni
+            quaerat aliquam voluptates cum in corrupti rerum vel, neque dolore
+            suscipit optio. Assumenda impedit reprehenderit accusamus. Qui rem
+            perferendis voluptate alias!
+          </p>
+        </div>
+        <div class="ok2">
+          <h3>Communication</h3>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Accusantium dicta numquam vero similique quos! Explicabo maiores
+            ipsum repudiandae eius similique dolorum animi consequuntur iste
+            aspernatur eos dolor, labore ut magnam!
+          </p>
+        </div>
+        <div class="ok3">
+          <h3>Simplicity</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias non
+            molestias repellendus deleniti delectus, eum ab tempore harum
+            quisquam ut asperiores eius incidunt? Laboriosam tempora provident
+            incidunt, quia dolorem deleniti?
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{%endblock body%}

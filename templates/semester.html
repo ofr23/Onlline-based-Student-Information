@@ -1,0 +1,266 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 30px;
+        height: 100%;
+      }
+      .notun {
+        background: rgba(255, 255, 255, 0.535);
+        position: fixed;
+        width: 84.4%;
+        height: 120vh;
+        top: 0;
+        left: 15.84%;
+      }
+      .form {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: whitesmoke;
+        border-top: 30px solid rgb(13, 78, 62);
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 10;
+        top: 23%;
+        left: 45%;
+        flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      }
+      .form label {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .header {
+        border-bottom: 2px solid rgb(210, 207, 207);
+      }
+      form > * {
+        width: 300px;
+        padding: 10px;
+        margin-top: 20px;
+      }
+
+      .but {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .but button {
+        width: 200px;
+        padding: 10px;
+        font-weight: 700;
+        margin-right: 5px;
+      }
+      .but button:hover {
+        background: rgb(13, 78, 62);
+        color: white;
+        font-weight: 700;
+      }
+      .h4 {
+        margin-top: -20px;
+        background: whitesmoke;
+        padding: 10px;
+        font-weight: 100;
+        font-size: 19px;
+      }
+      .wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .wrapper > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        background: whitesmoke;
+        width: 300px;
+        height: 150px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+      }
+      .sem {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      }
+      .hudai {
+        background: rgba(92, 84, 84, 0.757);
+        position: absolute;
+        left: 15.8%;
+        height: 300%;
+        width: 84.6%;
+        z-index: 5;
+      }
+      #alert1 button {
+        padding: 10px;
+        width: 120px;
+        margin-left: 34%;
+        font-weight: 700;
+        background: whitesmoke;
+        font-size: 18px;
+        margin-top: 10px;
+        font-family: "Courier New", Courier, monospace;
+      }
+      #alert1 .sub {
+        width: 100%;
+      }
+      #alert1 {
+        background: whitesmoke;
+        position: absolute;
+        left: 50%;
+        border-radius: 10px;
+        z-index: 400;
+        width: 300px;
+        padding: 40px;
+        top: 50%;
+        font-size: 19px;
+        left: 40%;
+        background: rgb(198, 95, 95);
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      .wrapper a {
+        color: black;
+      }
+      .sem:hover {
+        background: rgb(13, 78, 62);
+        color: white;
+      }
+      .wrapper form {
+        background: none;
+        width: auto;
+      }
+      .wrapper a:hover {
+        color: white;
+      }
+      .wrapper button {
+        width: 300px;
+        height: 150px;
+        padding: 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        font-size: 18px;
+        font-weight: 700;
+        background: white;
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+      }
+      select {
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 18px;
+      }
+      option > * {
+        border-bottom: 1px solid black;
+      }
+      .back {
+        background: black;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        margin-left: 40%;
+      }
+      .hu:hover {
+        box-shadow: 0 0 6px 3px #fff, 0 0 4px 4px rgb(31, 161, 179);
+      }
+      @media only screen and (max-width: 900px) {
+        .notun {
+          left: 33.5%;
+        }
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {%for msg in messages%} {%if 'course' in msg.tags%}
+    <div class="notun"></div>
+    <div class="form">
+      <h3>Add Course</h3>
+      <form method="POST">
+        {%csrf_token%}
+        <label for="">Select Course</label>
+        <select name="course" id="" required>
+          <option selected disabled></option>
+          {%for o in lost%}
+          <option value="{{o.courseCode}}">{{o.name}}</option>
+          {%endfor%}
+        </select>
+        <label for="">Select Teacher</label>
+        <select name="teacher" id="" required>
+          <option selected disabled></option>
+          {%for o in faculty%}
+          <option value="{{o.email}}">{{o.name}}</option>
+          {%endfor%}
+        </select>
+        <div class="but">
+          <button onclick="history.back()">Cancel</button>
+          <button name="ok" type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+    {%endif%} {%if 'result' in msg.tags%}
+    <div class="hudai"></div>
+    <div
+      id="alert1"
+      class="alert alert-danger alert-dismissible fade show"
+      role="alert"
+    >
+      <div class="sub">
+        <p>{{msg}}</p>
+      </div>
+      <button class="button" onclick="history.back()">Close</button>
+    </div>
+    {%endif%} {%endfor%}
+    <div class="con">
+      <h3 class="header">Session :{{session}}-{{session|add:1}}</h3>
+      <h4 class="h4">{{ss}}</h4>
+      <div class="wrapper">
+        {%if hodNaki is 1%}
+        <form method="POST">
+          {%csrf_token%}
+          <button class="hu" name="no" type="submit">Add Course</button>
+        </form>
+        {%endif%}
+        <form method="POST">
+          {%csrf_token%}
+          <button class="hu" name="res" type="submit">Semester Result</button>
+        </form>
+        {%for o in courses%}
+        <div class="sem">
+          <a href="course/{{o.courseCode}}">
+            <h3>{{o.name}}</h3>
+          </a>
+          <small>Course Code: {{o.courseCode}}</small>
+        </div>
+        {%endfor%}
+      </div>
+      <button class="back"><a href="/class/{{session}}">Back</a></button>
+    </div>
+  </body>
+</html>
+{%endblock body%}

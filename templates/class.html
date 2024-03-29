@@ -1,0 +1,215 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        position: relative;
+      }
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 30px;
+        height: 100%;
+      }
+      .notun {
+        background: rgba(255, 255, 255, 0.535);
+        position: fixed;
+        width: 84.4%;
+        height: 120vh;
+        top: 0;
+        left: 15.84%;
+      }
+      .form {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: whitesmoke;
+        border-top: 30px solid rgb(13, 78, 62);
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 10;
+        top: 40%;
+        left: 50%;
+        flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      }
+      .form label {
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      form > * {
+        width: 300px;
+        padding: 10px;
+        margin-top: 20px;
+      }
+
+      .but {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .but button {
+        width: 200px;
+        padding: 10px;
+        font-weight: 700;
+        margin-right: 5px;
+      }
+      .but button:hover {
+        background: rgb(13, 78, 62);
+        color: white;
+        font-weight: 700;
+      }
+      .wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .wrapper > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 10px;
+        margin-top: 10px;
+      }
+      .sem {
+        background: whitesmoke;
+        height: 150px;
+        width: 250px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+          rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      }
+      select {
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 20px;
+      }
+      .hu {
+        outline: none;
+        border: none;
+        width: 250px;
+        height: 150px;
+        font-weight: 700;
+        margin-bottom: 17px;
+      }
+      .wrapper a {
+        color: black;
+      }
+      .sem:hover {
+        background: rgb(13, 78, 62);
+        color: white;
+      }
+      .wrapper button {
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        border: 2px solid black;
+        padding: 20px;
+        cursor: pointer;
+      }
+      .wrapper a:hover {
+        color: white;
+      }
+      .back {
+        background: black;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        margin-left: 40%;
+      }
+      .header {
+        border-bottom: 2px solid rgb(225, 225, 225);
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {%for msg in messages%} {%if 'semester' in msg.tags%}
+    <div class="notun"></div>
+    <div class="form">
+      <h3>Create Semester</h3>
+      <form method="POST">
+        {%csrf_token%}
+        <label for="">Select Semester</label>
+        <select name="semester">
+          <option selected disabled></option>
+          {%for o in semester%} {%if o is 1%}
+          <option value="{{o}}">{{o}}st Semester</option>
+          {%elif o is 2%}
+          <option value="{{o}}">{{o}}nd Semester</option>
+          {%elif o is 3%}
+          <option value="{{o}}">{{o}}rd Semester</option>
+          {%else%}
+          <option value="{{o}}">{{o}}th Semester</option>
+          {%endif%} {%endfor%}
+        </select>
+        <div class="but">
+          <button onclick="history.back()">Cancel</button>
+          <button name="ok" type="submit" onclick="history.back()">
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
+    {%endif%} {%endfor%}
+    <div class="con">
+      <h3 class="header">Session {{session}}-{{session|add:1}}</h3>
+      <div class="wrapper">
+        {%if hodNaki is 1%}
+        <form method="POST">
+          {%csrf_token%}
+          <button class="hu" name="no" type="submit">Create Semester</button>
+        </form>
+        {%endif%} {%for o in ob%}
+        <div class="sem">
+          {%if o.semester is 1%}
+          <a href="semester/{{o.semester}}">
+            <h4>{{o.semester}}st Semester</h4>
+          </a>
+          {%elif o.semester is 2%}
+          <a href="semester/{{o.semester}}">
+            <h4>{{o.semester}}nd Semester</h4>
+          </a>
+          {%elif o.semester is 3%}
+          <a href="semester/{{o.semester}}">
+            <h4>{{o.semester}}rd Semester</h4>
+          </a>
+          {%else%}
+          <a href="semester/{{o.semester}}">
+            <h4>{{o.semester}}th Semester</h4>
+          </a>
+          {%endif%}
+        </div>
+        {%endfor%}
+      </div>
+      <button class="back">
+        <a href="/preclass">Back</a>
+      </button>
+    </div>
+  </body>
+</html>
+{%endblock body%}

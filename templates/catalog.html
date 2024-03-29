@@ -1,0 +1,110 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 30px;
+        height: 100%;
+      }
+      table {
+        width: 100%;
+      }
+      tr {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        width: 100%;
+      }
+      thead th {
+        background: rgb(13, 78, 62);
+        font-weight: 600;
+        color: white;
+        font-size: 19px;
+      }
+      .name {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      th {
+        padding: 20px;
+        margin-bottom: 10px;
+        background: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        font-weight: 200;
+      }
+      th button {
+        padding: 8px;
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 18px;
+        border: 2px solid black;
+        background: white;
+      }
+      th button:hover {
+        background: rgb(13, 78, 62);
+        color: white;
+        font-weight: 600;
+        border: 2px solid white;
+      }
+      h2 {
+        text-align: center;
+        border-bottom: 2px solid rgba(107, 104, 104, 0.197);
+      }
+      @media only screen and (max-width: 900px) {
+        table {
+          width: 60%;
+        }
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="con">
+      <h2>List Of Courses</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Course Credits</th>
+            {%if flag is 1%}
+            <th>Action</th>
+            {%endif%}
+          </tr>
+        </thead>
+        {%for o in course%}
+        <tr>
+          <th class="name">{{o.name}}</th>
+          <th>{{o.courseCode}}</th>
+          <th>{{o.credit}}</th>
+          {%if flag is 1%}
+          <th>
+            <form method="POST">
+              {%csrf_token%}
+              <button type="submit" name="hod" value="{{o.courseCode}}">
+                Delete
+              </button>
+            </form>
+          </th>
+          {%endif%}
+        </tr>
+        {%endfor%}
+      </table>
+    </div>
+  </body>
+</html>
+
+{%endblock body%}

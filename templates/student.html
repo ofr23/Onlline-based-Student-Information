@@ -1,0 +1,599 @@
+{%extends 'home.html'%} {%block body%} {%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    .con {
+      margin-left: 300px;
+      background: white;
+      width: 90vw;
+      margin-top: 100px;
+      border-radius: 10px;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      padding: 40px;
+      height: 100%;
+    }
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid rgba(187, 184, 184, 0.496);
+    }
+    .wrapper {
+      padding: 30px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    .wrapper form {
+      padding: 20px;
+      background: whitesmoke;
+      margin-right: 50px;
+      width: 300px;
+    }
+    .wrapper form button {
+      font-weight: 700;
+      width: 100%;
+      background: none;
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-family: "Courier New", Courier, monospace;
+      outline: none;
+      border: 2px solid black;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .wrapper form button:hover {
+      background: rgb(13, 78, 62);
+      color: white;
+    }
+
+    .hudai {
+      background: rgba(92, 84, 84, 0.757);
+      position: absolute;
+      left: 15.8%;
+      height: 300%;
+      width: 84.6%;
+      z-index: 5;
+    }
+    .gui form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .gui form > * {
+      width: 300px;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .gui {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: whitesmoke;
+      border-top: 30px solid rgb(13, 78, 62);
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 10;
+      top: 10%;
+      margin-left: 20%;
+      width: 500px;
+      flex-direction: column;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+    .gui button {
+      border: 2px solid black;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 17px;
+      font-weight: 700;
+      outline: none;
+      padding: 10px;
+      width: 100px;
+      margin-top: 20px;
+      margin-right: 30px;
+      cursor: pointer;
+    }
+    .gui input {
+      padding: 10px;
+      width: 300px;
+      border: none;
+      font-family: "Courier New", Courier, monospace;
+    }
+    .gui h4 {
+      margin-bottom: -17px;
+    }
+    .gui button:hover {
+      background: rgb(13, 78, 62);
+      color: white;
+    }
+    .imp {
+      margin-top: 40px;
+      display: flex;
+      width: 400px;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 30px;
+      border-right: 3px solid salmon;
+      border-left: 3px solid salmon;
+      border-radius: 10px;
+      margin-bottom: 50px;
+      background: whitesmoke;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .imp h4 {
+      margin-top: 0;
+    }
+
+    .imp img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-right: 30px;
+    }
+
+    table {
+      width: 100%;
+    }
+    tr {
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: white;
+      box-shadow: 2px 2px 5px rgb(205, 207, 205);
+      text-align: center;
+      width: 100%;
+    }
+    .imp small {
+      border-bottom: 1px solid seagreen;
+    }
+    thead th {
+      background: rgb(13, 78, 62);
+      font-weight: 600;
+      color: white;
+      font-size: 19px;
+    }
+    th {
+      padding: 20px;
+      margin-bottom: 10px;
+      background: white;
+      box-shadow: 2px 2px 5px rgb(205, 207, 205);
+      text-align: center;
+      font-weight: 200;
+    }
+    #alert1 button {
+      padding: 10px;
+      width: 120px;
+      font-weight: 700;
+      background: whitesmoke;
+      font-size: 18px;
+      margin-top: 10px;
+      font-family: "Courier New", Courier, monospace;
+    }
+    #alert1 .sub {
+      width: 100%;
+    }
+    #alert1 {
+      background: whitesmoke;
+      position: absolute;
+      left: 50%;
+      text-align: center;
+      border-radius: 10px;
+      z-index: 400;
+      width: 300px;
+      padding: 40px;
+      top: 40%;
+      font-size: 19px;
+      left: 40%;
+      background: rgb(198, 95, 95);
+      color: white;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .main {
+      margin-top: 50px;
+      width: 100%;
+    }
+    .notun {
+      background: rgba(255, 255, 255, 0.535);
+      position: fixed;
+      width: 84.6%;
+      height: 200vh;
+      top: 0;
+      left: 15.8%;
+    }
+    .pore {
+      background: seagreen;
+      padding: 10px;
+      margin-left: 37%;
+      border: none;
+      color: white;
+      font-size: 19px;
+      font-weight: 600;
+      width: 260px;
+      margin-top: 30px;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    .header > * {
+      cursor: pointer;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: none;
+      padding: 10px;
+      font-size: 18px;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 600;
+    }
+    .personal {
+      background: whitesmoke;
+      border-radius: 10px;
+      padding: 30px;
+    }
+    .per {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      border-bottom: 1px solid rgba(182, 179, 179, 0.37);
+    }
+    .per h4 {
+      margin-top: 5px;
+    }
+    .per > * {
+      margin-right: 60px;
+    }
+    .hu {
+      margin-top: 30px;
+      border-bottom: 2px solid rgba(216, 213, 213, 0.283);
+    }
+    .wrapper a {
+      color: black;
+    }
+    .no {
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hee {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .kk {
+      margin-left: 10%;
+      margin-top: 40px;
+      display: flex;
+      width: 400px;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      border-right: 3px solid red;
+      border-left: 3px solid red;
+      border-radius: 10px;
+      margin-bottom: 50px;
+      background: whitesmoke;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .kk button {
+      background: rgb(42, 187, 47);
+      padding: 10px;
+      width: 150px;
+      outline: none;
+      border: none;
+      color: white;
+      border-radius: 5px;
+    }
+    .kk h5 {
+      margin-top: 0;
+      padding: 20px;
+      width: 100%;
+      background: white;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+    .dd {
+      margin-top: 30px;
+      background: rgb(246, 175, 167);
+      border-radius: 10px;
+      padding: 20px;
+      color: black;
+      width: 100%;
+      border: 5px solid white;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    }
+    @media only screen and (max-width: 900px) {
+      .con {
+        width: 55vw;
+      }
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {%for msg in messages%} {%if 'result' in msg.tags%}
+    <div class="hudai"></div>
+    <div
+      id="alert1"
+      class="alert alert-danger alert-dismissible fade show"
+      role="alert"
+    >
+      <div class="sub">
+        <p>{{msg}}</p>
+      </div>
+      <button class="button" onclick="history.back()">Close</button>
+    </div>
+    {%endif%} {%if 'edit' in msg.tags%}
+    <div class="notun"></div>
+    <div class="gui">
+      <h2 class="notice-header">Edit Informations</h2>
+      <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <h4>Edit First Name</h4>
+        <input type="text" value="{{teacher.first}}" name="first" />
+        <h4>Edit Middle Name</h4>
+        <input type="text" value="{{teacher.middle}}" name="middle" />
+        <h4>Edit Last Name</h4>
+        <input type="text" value="{{teacher.last}}" name="last" />
+        <h4>Edit Gender</h4>
+        <input type="text" value="{{teacher.gender}}" name="gender" />
+        <h4>Edit Phone number</h4>
+        <input type="text" value="{{teacher.phone}}" name="phone" />
+        <h4>Edit City</h4>
+        <input type="text" value="{{teacher.city}}" name="city" />
+        <input type="file" name="image" />
+        <div class="button">
+          <button onclick="history.back()">Cancel</button>
+          <button type="submit" class="editSave" name="editSave">Save</button>
+        </div>
+      </form>
+    </div>
+    {%endif%} {%if 'remarks' in msg.tags%}
+    <div class="notun"></div>
+    <div class="gui">
+      <h2>Enter Remarks</h2>
+      <form method="POST">
+        {%csrf_token%}
+        <textarea name="re" id="" cols="30" rows="10"></textarea>
+        <div class="button">
+          <button onclick="history.back()">Cancel</button>
+          <button type="submit" name="save">Save</button>
+        </div>
+      </form>
+    </div>
+    {%endif%} {%endfor%}
+    <div class="con">
+      <form method="POST" class="header">
+        {%csrf_token%} {%if same is 1%} {%if flag is 0%}
+        <button
+          style="background: rgb(13, 78, 62); color: white"
+          name="about"
+          type="submit"
+        >
+          About
+        </button>
+        {%else%}
+        <button style="background: white" name="about" type="submit">
+          About
+        </button>
+        {%endif%} {%if flag is 1%}
+        <button
+          style="background: rgb(13, 78, 62); color: white"
+          name="class"
+          type="submit"
+        >
+          Result
+        </button>
+        {%else%}
+        <button style="background: white" name="class" type="submit">
+          Result
+        </button>
+        {%endif%} {% if flag is 2%}
+        <button
+          style="background: rgb(13, 78, 62); color: white"
+          name="notice"
+          type="submit"
+        >
+          Notices
+        </button>
+        {%else%}
+        <button
+          style="background: rgb(255, 255, 255); color: black"
+          name="notice"
+          type="submit"
+        >
+          Notices
+        </button>
+        {%endif%} {%else%}
+        <button
+          style="background: rgb(13, 78, 62); color: white"
+          name="about"
+          type="submit"
+        >
+          About
+        </button>
+        {%endif%}
+      </form>
+      {%if flag is 0%}
+      <div class="hee">
+        <div class="imp">
+          <div class="oo">
+            <img src="{{teacher.image.url}}" alt="" />
+          </div>
+          <div class="ok">
+            <div class="per1">
+              <small>Name </small>
+              <h4>{{teacher.first }} {{teacher.middle}} {{teacher.last}} </h4>
+            </div>
+            <div class="per1">
+              <small>Student Identification Number</small>
+              <h4>{{teacher.studentId}}</h4>
+            </div>
+            <div class="per1">
+              <small>Email</small>
+              <h4>{{teacher.email}}</h4>
+            </div>
+          </div>
+        </div>
+        {%if keke is 1%}
+        <div class="kk">
+          <h3>Remarks from HOD</h3>
+          <h5>{{teacher.remarks}}</h5>
+          {%if hodNaki is 1%}
+          <form method="POST">
+            {%csrf_token%}
+            <button type="submit" name="remarks">Add Remarks</button>
+          </form>
+          {%endif%}
+        </div>
+        {%endif%}
+      </div>
+      <h3>Personal Information</h3>
+      <div class="personal">
+        <div class="per">
+          <div class="per1">
+            <small>First Name </small>
+            <h4>{{teacher.first}}</h4>
+          </div>
+          <div class="per1">
+            <small>Middle Name</small>
+            <h4>{{teacher.middle}}</h4>
+          </div>
+          <div class="per1">
+            <small>Last Name</small>
+            <h4>{{teacher.last}}</h4>
+          </div>
+        </div>
+        <div class="per">
+          <div class="per1">
+            <small>Home District</small>
+            <h4>{{teacher.home}}</h4>
+          </div>
+          <div class="per1">
+            <small>Gender</small>
+            <h4>{{teacher.gender}}</h4>
+          </div>
+        </div>
+        <div class="per">
+          <div class="per1">
+            <small>Nationality</small>
+            <h4>{{teacher.nationality}}</h4>
+          </div>
+          <div class="per1">
+            <small>ID Card</small>
+            <h4>{{teacher.idCard}}</h4>
+          </div>
+        </div>
+      </div>
+      <h3>Contact Information</h3>
+      <div class="personal">
+        <div class="per">
+          <div class="per1">
+            <small>Phone</small>
+            <h4>{{teacher.phone}}</h4>
+          </div>
+          <div class="per1">
+            <small>Telephone</small>
+            <h4>{{teacher.telephone}}</h4>
+          </div>
+          <div class="per1">
+            <small>Email</small>
+            <h4>{{teacher.email}}</h4>
+          </div>
+        </div>
+        <div class="per">
+          <div class="per1">
+            <small>Adress</small>
+            <h4>291/A fitit</h4>
+          </div>
+          <div class="per1">
+            <small>City</small>
+            <h4>{{teacher.city}}</h4>
+          </div>
+          <div class="per1">
+            <small>Zip Code</small>
+            <h4>{{teacher.zipCode}}</h4>
+          </div>
+        </div>
+      </div>
+      {%if same is 1%}
+      <form method="POST">
+        {%csrf_token%}
+        <button type="submit" class="pore" name="edit">Edit Information</button>
+      </form>
+      {%endif%} {%endif%} {%if flag is 1%}
+      <div class="wrapper">
+        <form method="POST">
+          {%csrf_token%}
+          <h3>
+            <button type="submit" name="konta" value="1">1st Semester</button>
+          </h3>
+          <h3>
+            <button type="submit" name="konta" value="2">2nd Semester</button>
+          </h3>
+          <h3>
+            <button type="submit" name="konta" value="3">3rd Semester</button>
+          </h3>
+          <h3>
+            <button type="submit" name="konta" value="4">4th Semester</button>
+          </h3>
+          <h3>
+            <button type="submit" name="konta" value="5">5th Semester</button>
+          </h3>
+          <h3>
+            <button type="submit" name="konta" value="6">6th Semester</button>
+          </h3>
+          <h3>
+            <button type="submit" name="konta" value="7">7th Semester</button>
+          </h3>
+          <h3>
+            <button type="submit" name="konta" value="8">8th Semester</button>
+          </h3>
+        </form>
+
+        <div class="main">
+          <table>
+            <thead>
+              <tr>
+                <th>Course Name</th>
+                <th>CGPA</th>
+              </tr>
+            </thead>
+            {%for o in result%}
+            <tr>
+              <th>{{o.course.name}}</th>
+              <th>{{o.cgpa}}</th>
+            </tr>
+            {%endfor%}
+            <tr>
+              <th><b> Accumulated CGPA </b></th>
+              <th><b>{{acc}}</b></th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      {%endif%} {%if flag is 2%}
+      <div class="no">
+        <h2>Notice Board</h2>
+        {%for o in notice%}
+        <div class="dd">
+          <h4>Subject : {{o.subject}}</h4>
+          <p>{{o.description}}</p>
+          <small style="font-weight: 600">Posted on: {{o.date}}</small>
+        </div>
+        {%endfor%}
+      </div>
+      {%endif%}
+    </div>
+  </body>
+</html>
+{%endblock body%}

@@ -1,0 +1,68 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 40px;
+        height: 70vh;
+      }
+      .header {
+        border-bottom: 2px solid rgba(153, 152, 152, 0.277);
+      }
+      .kur {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .kur > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 150px;
+        background: whitesmoke;
+        margin-right: 20px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+          rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      }
+      .kur > *:hover {
+        background: rgb(13, 78, 62);
+        color: white;
+        cursor: pointer;
+      }
+      @media only screen and (max-width: 900px) {
+        .kur {
+          flex-direction: column;
+        }
+        .kur > * {
+          margin-top: 30px;
+        }
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="con">
+      <h3 class="header">Select Session</h3>
+
+      <div class="kur">
+        {%for o in session%}
+        <a href="/class/{{o.session}}">
+          <h3>{{o.session}}-{{o.session|add:1}}</h3>
+        </a>
+        {%endfor%}
+      </div>
+    </div>
+  </body>
+</html>
+{%endblock body%}

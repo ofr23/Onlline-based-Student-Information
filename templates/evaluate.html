@@ -1,0 +1,122 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 1300px;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 30px;
+        height: 100%;
+      }
+      .header {
+        border-bottom: 2px solid rgb(218, 216, 216);
+      }
+      .bu {
+        margin-top: -20px;
+        background: whitesmoke;
+        padding: 5px;
+        font-weight: 100;
+        font-size: 18px;
+      }
+      input {
+        border: none;
+        outline: none;
+      }
+      .bu a {
+        color: black;
+      }
+      .jj {
+        text-align: center;
+        border-bottom: 2px solid rgb(218, 216, 216);
+      }
+      table {
+        width: 100%;
+      }
+      tr {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        width: 100%;
+      }
+      thead th {
+        background: rgb(13, 78, 62);
+        font-weight: 600;
+        color: white;
+        font-size: 19px;
+      }
+      th {
+        padding: 20px;
+        margin-bottom: 10px;
+        background: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        font-weight: 200;
+      }
+      .back {
+        cursor: pointer;
+        background: black;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        margin-left: 40%;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="con">
+      <h3 class="header">Session: {{session}} - {{session|add:1}}</h3>
+      <h4 class="bu">{{ss}}</h4>
+      <h4 class="bu">Course: {{course.name}}</h4>
+      <h3 class="jj">Enter CGPA</h3>
+      <form method="POST">
+        <table>
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <th>CGPA</th>
+            </tr>
+          </thead>
+          {%csrf_token%} {%for o in student%}
+          <tr>
+            <th>{{o.student.studentId}}</th>
+            <th>
+              <input
+                type="number"
+                max="4"
+                step=".01"
+                name="cgpa"
+                value="{{o.cgpa}}"
+              />
+            </th>
+          </tr>
+          {%endfor%}
+        </table>
+        {%if flag1 is 0%}
+        <button type="submit" class="back">Publish</button>
+        {%endif%}
+      </form>
+      <button class="back">
+        <a
+          href="/class/{{session}}/semester/{{course.semester.semester}}/course/{{course.courseCode}}/"
+          >Back</a
+        >
+      </button>
+    </div>
+  </body>
+</html>
+{%endblock body%}

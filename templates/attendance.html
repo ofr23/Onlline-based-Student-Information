@@ -1,0 +1,175 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 30px;
+        height: 100%;
+      }
+      .back {
+        background: black;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        margin-left: 40%;
+      }
+      .front {
+        background: rgb(60, 154, 80);
+        color: white;
+        width: 200px;
+        cursor: pointer;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        border: none;
+        margin-left: 40%;
+      }
+      .bu a {
+        color: black;
+      }
+      .bu a:hover {
+        font-weight: 700;
+      }
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid rgba(187, 184, 184, 0.496);
+      }
+      .header > * {
+        cursor: pointer;
+        width: 50%;
+        border: none;
+        outline: none;
+        background: none;
+        padding: 10px;
+        font-size: 18px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+      }
+      h2 {
+        text-align: center;
+      }
+      .bu {
+        margin-top: -20px;
+        background: whitesmoke;
+        padding: 5px;
+        font-weight: 100;
+        font-size: 18px;
+      }
+      table {
+        width: 100%;
+      }
+      tr {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        width: 100%;
+      }
+      thead th {
+        background: rgb(13, 78, 62);
+        font-weight: 600;
+        color: white;
+        font-size: 19px;
+      }
+      .ii {
+        padding: 0;
+      }
+      th {
+        padding: 20px;
+        margin-bottom: 10px;
+        background: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        font-weight: 200;
+      }
+      .ii {
+        width: 100px;
+      }
+      input[type="checkbox"] {
+        appearance: none;
+        background-color: #d83a3a;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 98%;
+        height: 77px;
+        border: none;
+        transform: translateY(-0.075em);
+        display: grid;
+        place-content: center;
+      }
+      input[type="checkbox"]::before {
+        content: "";
+        width: 9.2em;
+        height: 4.58em;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em var(--form-control-color);
+        background-color: CanvasText;
+      }
+      input[type="checkbox"]:checked::before {
+        transform: scale(1);
+        background-color: rgb(60, 154, 80);
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="con">
+      <h3 class="header">Session: {{session}} - {{session|add:1}}</h3>
+      <h4 class="bu">{{ss}}</h4>
+      <h4 class="bu">Course: {{course.name}}</h4>
+      <h4 class="bu">
+        Course Teacher :
+        <a href="/teacher/{{course.courseTeacher.teacherId}}">
+          <b>{{course.courseTeacher}}</b>
+        </a>
+        <h2>Date : {{date}}</h2>
+      </h4>
+      <form method="POST">
+        {%csrf_token%}
+        <table>
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Student ID</th>
+              <th class="ii">Present/Absent</th>
+            </tr>
+          </thead>
+          {%for o in student%}
+          <tr>
+            <th>{{o.name}}</th>
+            <th>{{o.studentId}}</th>
+            <th class="ii">
+              <input name="id" type="checkbox" value="{{o.studentId}}" />
+            </th>
+          </tr>
+          {%endfor%}
+        </table>
+        <button type="submit" class="front" name="att">Post</button>
+      </form>
+      <button class="back"><a href="/preat">Back</a></button>
+    </div>
+  </body>
+</html>
+{%endblock body%}

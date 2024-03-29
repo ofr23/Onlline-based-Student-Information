@@ -1,0 +1,192 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background-image: url("/static/5172658.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: "Courier New", Courier, monospace;
+      }
+      form {
+        z-index: 1;
+        border-radius: 10px;
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: rgba(245, 245, 245, 0.759);
+        padding: 30px;
+        height: 400px;
+        width: 400px;
+        color: black;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      }
+      form > * {
+        margin-bottom: 20px;
+      }
+      form h2 {
+        margin-top: 0;
+        padding: 10px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid rgba(96, 92, 92, 0.526);
+      }
+      input {
+        padding: 15px;
+        width: 350px;
+        border: none;
+        outline: none;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .ok input {
+        padding: 5px;
+        width: 20px;
+      }
+      form label {
+        font-weight: 400;
+        font-size: 20px;
+      }
+      .notun {
+        background: rgba(92, 84, 84, 0.757);
+        position: absolute;
+        height: 300%;
+        width: 120%;
+        z-index: 5;
+      }
+
+      #alert1 {
+        background: rgb(184, 94, 94);
+        position: absolute;
+        left: 50%;
+        z-index: 400;
+        width: 300px;
+        padding: 40px;
+        top: 40%;
+        left: 40%;
+        color: white;
+        border-radius: 10px;
+        text-align: center;
+        font-family: "Courier New", Courier, monospace;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      #alert2 {
+        background: rgb(52, 125, 68);
+        position: absolute;
+        left: 50%;
+        text-align: center;
+        z-index: 400;
+        width: 300px;
+        padding: 40px;
+        top: 50%;
+        left: 40%;
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      button {
+        border: 2px solid black;
+        padding: 10px;
+        width: 150px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .img {
+        transform: scale(1);
+        margin-left: 100px;
+      }
+      .wrapper {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .side {
+        margin-left: 100px;
+        width: 100%;
+      }
+      h3 {
+        font-weight: 600;
+        font-size: 1.2rem;
+      }
+      small {
+        margin-top: 20px;
+      }
+      small a {
+        color: black;
+      }
+      small a:hover {
+        color: blueviolet;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% for msg in messages%} {% if 'error' in msg.tags%}
+    <div class="notun"></div>
+    <div
+      id="alert1"
+      class="alert alert-danger alert-dismissible fade show"
+      role="alert"
+    >
+      <div class="sub">
+        <h3>Error Occurred !</h3>
+        <p>{{msg}}</p>
+      </div>
+      <button class="button" onclick="history.back()">Close</button>
+    </div>
+    {%elif 'success' in msg.tags%}
+    <div class="notun"></div>
+    <div
+      id="alert2"
+      class="alert alert-danger alert-dismissible fade show"
+      role="alert"
+    >
+      <i id="ok" class="fa fa-check"></i>
+      <div class="sub">
+        <h3>Success</h3>
+        <p>{{msg}}</p>
+      </div>
+      <button class="button" onclick="window.location.href='/'">Close</button>
+    </div>
+    {%endif%} {%endfor%}
+    <div class="wrapper">
+      <div class="side">
+        <form method="POST">
+          {%csrf_token%}
+          <h2>Student Information System</h2>
+          <div class="ok">
+            <input name="type" type="radio" value="1" required />
+            <label for="type">Teacher</label>
+          </div>
+          <div class="ok">
+            <input name="type" type="radio" value="2" required />
+            <label for="type">Student</label>
+          </div>
+          <input name="email" type="email" placeholder="Enter Email" required />
+          <input
+            name="pass"
+            type="password"
+            placeholder="Enter Password"
+            required
+          />
+          <button type="submit">Login</button>
+          <small><a href="/register">Do not Have An Account ?</a></small>
+        </form>
+      </div>
+      {%load static%}
+    </div>
+  </body>
+</html>

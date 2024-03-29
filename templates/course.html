@@ -1,0 +1,379 @@
+{%extends 'home.html'%} {%block body%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .notun {
+        background: rgba(255, 255, 255, 0.535);
+        position: fixed;
+        width: 84.4%;
+        height: 100%;
+        top: 0;
+        left: 15.85%;
+      }
+      .form {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: whitesmoke;
+        border-top: 30px solid rgb(13, 78, 62);
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 10;
+        top: 10%;
+        left: 40%;
+        width: 500px;
+        flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      }
+      .form button {
+        border: 2px solid black;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 17px;
+        font-weight: 700;
+        outline: none;
+        padding: 10px;
+        width: 100px;
+        margin-top: 20px;
+        margin-right: 30px;
+        cursor: pointer;
+      }
+      .form button:hover {
+        background: rgb(13, 78, 62);
+        color: white;
+      }
+      .con {
+        margin-left: 300px;
+        background: white;
+        width: 90vw;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 30px;
+        height: 100%;
+      }
+      .header {
+        border-bottom: 2px solid rgb(218, 216, 216);
+      }
+      table {
+        width: 100%;
+      }
+      tr {
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        width: 100%;
+      }
+      .evaluate {
+        background: black;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        margin-left: 40%;
+      }
+      .back {
+        background: black;
+        color: white;
+        width: 200px;
+        padding: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        font-size: 18px;
+        margin-top: 50px;
+        margin-left: 40%;
+      }
+      thead th {
+        background: rgb(13, 78, 62);
+        font-weight: 600;
+        color: white;
+        font-size: 19px;
+      }
+      th {
+        padding: 20px;
+        margin-bottom: 10px;
+        background: white;
+        box-shadow: 2px 2px 5px rgb(205, 207, 205);
+        text-align: center;
+        font-weight: 200;
+      }
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid rgba(187, 184, 184, 0.496);
+      }
+      .announce:hover {
+        border: 1px solid #12c1bb;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: 0px 0px 4px #12c1bb;
+        -moz-box-shadow: 0px 0px 4px #12c1bb;
+        box-shadow: 0px 0px 4px #12c1bb;
+      }
+      .header > * {
+        cursor: pointer;
+        width: 50%;
+        border: none;
+        outline: none;
+        background: none;
+        padding: 10px;
+        font-size: 18px;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+      }
+      .bu {
+        margin-top: -20px;
+        background: whitesmoke;
+        padding: 5px;
+        font-weight: 100;
+        font-size: 18px;
+      }
+      .class {
+        margin-left: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px;
+        margin-top: 20px;
+        width: 50%;
+      }
+      .msg {
+        margin-top: 20px;
+        background: whitesmoke;
+        border-radius: 5px;
+        width: 100%;
+        padding: 20px;
+      }
+      .msg h4 {
+        margin-top: 0;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.34);
+      }
+      pre {
+        width: 100%;
+        white-space: pre-wrap;
+      }
+      .hui {
+        width: 100%;
+        display: block;
+        padding: 5px;
+        background: white;
+      }
+      @media only screen and (max-width: 900px) {
+        .msg pre {
+          white-space: pre-wrap;
+        }
+        .notun {
+          left: 32.5%;
+        }
+        .form {
+          left: 34%;
+        }
+      }
+
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      input[type="file"] {
+        font-family: "Courier New", Courier, monospace;
+        padding: 10px;
+      }
+      .form textarea {
+        resize: none;
+        font-family: "Courier New", Courier, monospace;
+        width: 400px;
+        height: 200px;
+        font-size: 17px;
+        padding: 20px;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+      .announce {
+        padding: 20px;
+        padding-right: 100px;
+        border: none;
+        cursor: pointer;
+        background: whitesmoke;
+        text-align: left;
+        font-weight: 600;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.408);
+        font-family: "Courier New", Courier, monospace;
+        border-radius: 6px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+          rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      }
+      .pdf {
+        margin-top: -20px;
+        margin-bottom: 20px;
+      }
+
+      .bu a {
+        color: black;
+      }
+      .bu a:hover {
+        font-weight: 700;
+      }
+      .list {
+        margin-top: 40px;
+      }
+      table a {
+        color: black;
+      }
+      table a:hover {
+        font-weight: 700;
+        color: black;
+      }
+
+      .ii {
+        text-align: center;
+        border-bottom: 1px solid rgba(157, 169, 157, 0.252);
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {%for msg in messages%} {%if 'announce' in msg.tags%}
+    <div class="notun"></div>
+    <div class="form">
+      <h3>Create Post</h3>
+      <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <textarea
+          name="text"
+          id=""
+          cols="40"
+          rows="10"
+          placeholder="Type something..."
+        ></textarea>
+        <input type="file" name="files" />
+        <div class="button">
+          <button onclick="history.back()">Cancel</button>
+          <button type="submit" name="post">Post</button>
+        </div>
+      </form>
+    </div>
+    {%endif%} {%endfor%}
+    <div class="con">
+      <h3 class="header">Session: {{session}} - {{session|add:1}}</h3>
+      <h4 class="bu">{{ss}}</h4>
+      <h4 class="bu">Course: {{course.name}}</h4>
+      <h4 class="bu">
+        Course Teacher :
+        <a href="/teacher/{{course.courseTeacher.teacherId}}">
+          <b>{{course.courseTeacher}}</b>
+        </a>
+      </h4>
+      <form method="POST" class="header">
+        {%csrf_token%} {%if flag is 0%}
+        <button
+          style="background: rgb(13, 78, 62); color: white"
+          name="1"
+          type="submit"
+        >
+          Class
+        </button>
+        {%else%}
+        <button style="background: white" name="1" type="submit">Class</button>
+        {%endif%} {%if flag is 1%}
+        <button
+          style="background: rgb(13, 78, 62); color: white"
+          name="2"
+          type="submit"
+        >
+          Students
+        </button>
+        {%else%}
+        <button style="background: white" name="2" type="submit">
+          Students
+        </button>
+        {%endif%}
+      </form>
+      {%if flag is 1%}
+      <div class="list">
+        <h3 class="ii">Students</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Student ID</th>
+            </tr>
+          </thead>
+          {%for o in student%}
+          <tr>
+            <th>
+              <a href="/student/{{o.studentId}}"> {{o.name}} </a>
+            </th>
+            <th>{{o.studentId}}</th>
+          </tr>
+          {%endfor%}
+        </table>
+        <div class="nish">
+          {%if flag1 is 1%}
+          <button class="evaluate">
+            <a
+              href="/evaluate/{{course.session}}/{{course.semester.semester}}/{{course.courseCode}}"
+              >Evaluate</a
+            >
+          </button>
+          {%endif%}
+          <button class="back">
+            <a href="/class/{{session}}/semester/{{course.semester.semester}}"
+              >Back</a
+            >
+          </button>
+        </div>
+      </div>
+      {%endif%} {%if flag is 0%}
+      <div class="class">
+        {%if flag1 is 1%}
+        <form method="POST">
+          {%csrf_token%}
+          <button type="submit" name="announce" class="announce">
+            Announce something to the class
+          </button>
+        </form>
+        {%endif%} {%for o in msg%}
+        <div class="msg">
+          <small>Posted By</small>
+          <h4>{{course.courseTeacher}}</h4>
+          <pre>{{o.text}}</pre>
+          <h4>Attachments</h4>
+          <button
+            class="pdf"
+            onclick="window.location.href='/pdf/{{o.mailId}}'"
+          >
+            {{o.files}}
+          </button>
+          <small class="hui">Posted on: {{o.time}}</small>
+        </div>
+        {%endfor%}
+        <button class="back">
+          <a href="/class/{{session}}/semester/{{course.semester.semester}}"
+            >Back</a
+          >
+        </button>
+      </div>
+      {%endif%}
+    </div>
+  </body>
+</html>
+{%endblock body%}
